@@ -36,7 +36,7 @@ spec:
       affinity: {{ toYaml .Values.affinity | trimSuffix "\n" | indent 8 }}
       {{- end }}
       {{- if .Values.daemonSetNodeSelector }}
-      selector: {{ toYaml .Values.daemonSetNodeSelector | trimSuffix "\n" | nindent 8 }}
+      nodeSelector: {{ toYaml .Values.daemonSetNodeSelector | trimSuffix "\n" | nindent 8 }}
       {{- end }}
       {{- if .Values.daemonSetTolerations }}
       tolerations: {{ toYaml .Values.daemonSetTolerations | trimSuffix "\n" | nindent 8 }}
