@@ -15,9 +15,11 @@ chaoimage:
 nameOverride: ""
 fullnameOverride: ""
 
-nodeSelector: {}
+daemonSetNodeSelector: {}
+chaoNodeSelector: {}
 
-tolerations: []
+daemonSetTolerations: []
+chaoTolerations: []
 
 affinity: {}
 

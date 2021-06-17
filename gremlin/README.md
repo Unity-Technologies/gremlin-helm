@@ -20,8 +20,10 @@ their default values. See values.yaml for all available options.
 | `chaoimage.pullPolicy`                 | Container pull policy for the `chao` container                 | `Always`                                                                    |
 | `chaoimage.repository`                 | Container image to use for the `chao` container                | `gremlin/chao`                                                              |
 | `chaoimage.tag`                        | Container image tag to deploy for the `chao` container         | `latest`                                                                    |
-| `nodeSelector`                         | Map of node labels for pod assignment                          | `{}`                                                                        |
-| `tolerations`                          | List of node taints to tolerate                                | `[]`                                                                        |
+| `daemonSetNodeSelector`                         | Map of node labels for pod assignment                 | `{}`|
+| `chaoNodeSelector`                         | Map of node labels for chao deployment                 | `{}`|
+| `daemonSetTolerations`                          | List of node taints to tolerate                                | `[]`                                                                        |
+| `chaoTolerations`                          | List of node taints to tolerate for chao deployment                             | `[]
 | `affinity`                             | Map of node/pod affinities                                     | `{}`                                                                        |                                                                    |
 | `gremlin.apparmor`                     | Apparmor profile to set for the Gremlin Daemon                 | `""` (When empty, no profile is set)                                        |
 | `gremlin.container.driver`             | Specifies which container driver with which to run Gremlin. [See example][driverexample] | `docker` | 
@@ -71,11 +73,11 @@ $ helm install gremlin gremlin/gremlin \
   --set       gremlin.secret.teamID="$GREMLIN_TEAM_ID" \
   --set-file  gremlin.secret.certificate=/path/to/gremlin.cert \
   --set-file  gremlin.secret.key=/path/to/gremlin.key \
-  --set       'tolerations[0].effect=NoSchedule' \
-  --set       'tolerations[0].key=node-role.kubernetes.io/master' \
-  --set       'tolerations[0].operator=Exists'
+  --set       'daemonSetTolerations[0].effect=NoSchedule' \
+  --set       'daemonSetTolerations[0].key=node-role.kubernetes.io/master' \
+  --set       'daemonSetTolerations[0].operator=Exists'
 ```
-_note_: Depending on your shell you may need different quoting around `tolerations[0]`
+_note_: Depending on your shell you may need different quoting around `daemonSetTolerations[0]`
 
 ## Installation
 
