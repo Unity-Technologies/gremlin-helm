@@ -20,9 +20,10 @@ their default values. See values.yaml for all available options.
 | `chaoimage.pullPolicy`                 | Container pull policy for the `chao` container                 | `Always`                                                                    |
 | `chaoimage.repository`                 | Container image to use for the `chao` container                | `gremlin/chao`                                                              |
 | `chaoimage.tag`                        | Container image tag to deploy for the `chao` container         | `latest`                                                                    |
+| `extraMetadataLabels`                  | An extra set of labels which are applied to chao and the daemonset | `latest`                                                                |
 | `nodeSelector`                         | Map of node labels for pod assignment                          | `{}`                                                                        |
 | `tolerations`                          | List of node taints to tolerate                                | `[]`                                                                        |
-| `affinity`                             | Map of node/pod affinities                                     | `{}`                                                                        |                                                                    |
+| `affinity`                             | Map of node/pod affinities                                     | `{}`                                                                        |
 | `gremlin.apparmor`                     | Apparmor profile to set for the Gremlin Daemon                 | `""` (When empty, no profile is set)                                        |
 | `gremlin.container.driver`             | Specifies which container driver with which to run Gremlin. [See example][driverexample] | `docker` | 
 | `gremlin.cgroup.root`                  | Specifies the absolute path for the cgroup controller root on target host systems | `/sys/fs/cgroup` |

@@ -6,6 +6,7 @@ metadata:
     app.kubernetes.io/instance: chao
     app.kubernetes.io/name: chao
     app.kubernetes.io/version: "1"
+    {{- toYaml .Values.extraMetadataLabels | trimSuffix "\n" | nindent 4 }}
   name: chao
   namespace: {{ .Release.Namespace }}
 spec:
@@ -21,6 +22,7 @@ spec:
         app.kubernetes.io/instance: chao
         app.kubernetes.io/name: chao
         app.kubernetes.io/version: "1"
+        {{- toYaml .Values.extraMetadataLabels | trimSuffix "\n" | nindent 8 }}
     spec:
       serviceAccountName: chao
       containers:
