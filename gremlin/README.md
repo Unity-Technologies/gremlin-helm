@@ -20,9 +20,9 @@ their default values. See values.yaml for all available options.
 | `chaoimage.pullPolicy`                 | Container pull policy for the `chao` container                 | `Always`                                                                    |
 | `chaoimage.repository`                 | Container image to use for the `chao` container                | `gremlin/chao`                                                              |
 | `chaoimage.tag`                        | Container image tag to deploy for the `chao` container         | `latest`                                                                    |
-| `daemonSetNodeSelector`                         | Map of node labels for pod assignment                 | `{}`|
+| `daemonSetNodeSelector`                         | Map of node labels for Gremlin pod assignment                 | `{}`|
 | `chaoNodeSelector`                         | Map of node labels for chao deployment                 | `{}`|
-| `daemonSetTolerations`                          | List of node taints to tolerate                                | `[]`                                                                        |
+| `daemonSetTolerations`                          | List of node taints to tolerate for Gremlin pod assignment                                | `[]`                                                                        |
 | `chaoTolerations`                          | List of node taints to tolerate for chao deployment                             | `[]
 | `affinity`                             | Map of node/pod affinities                                     | `{}`                                                                        |                                                                    |
 | `gremlin.apparmor`                     | Apparmor profile to set for the Gremlin Daemon                 | `""` (When empty, no profile is set)                                        |
