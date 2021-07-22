@@ -23,11 +23,13 @@ spec:
         app.kubernetes.io/version: "1"
     spec:
       serviceAccountName: chao
-      {{- if .Values.chaoNodeSelector }}
-      nodeSelector: {{ toYaml .Values.chaoNodeSelector | trimSuffix "\n" | nindent 8 }}
+      {{- if .Values.chao.nodeSelector }}
+      nodeSelector:
+        {{- toYaml .Values.chao.nodeSelector | nindent 8}}
       {{- end }}
-      {{- if .Values.chaoTolerations }}
-      tolerations: {{ toYaml .Values.chaoTolerations | trimSuffix "\n" | nindent 8 }}
+      {{- if .Values.chao.tolerations }}
+      tolerations: 
+        {{- toYaml .Values.chao.tolerations | nindent 8}}
       {{- end }}
       containers:
         - image: {{ .Values.chaoimage.repository }}:{{ .Values.chaoimage.tag }}

@@ -35,11 +35,13 @@ spec:
       {{- if .Values.affinity }}
       affinity: {{ toYaml .Values.affinity | trimSuffix "\n" | indent 8 }}
       {{- end }}
-      {{- if .Values.daemonSetNodeSelector }}
-      nodeSelector: {{ toYaml .Values.daemonSetNodeSelector | trimSuffix "\n" | nindent 8 }}
+      {{- if .Values.daemonset.nodeSelector }}
+      nodeSelector: 
+        {{- toYaml .Values.daemonset.nodeSelector | nindent 8}}
       {{- end }}
-      {{- if .Values.daemonSetTolerations }}
-      tolerations: {{ toYaml .Values.daemonSetTolerations | trimSuffix "\n" | nindent 8 }}
+      {{- if .Values.daemonset.tolerations }}
+      tolerations: 
+        {{- toYaml .Values.daemonset.tolerations | nindent 8}}
       {{- end }}
       hostPID: {{ .Values.gremlin.hostPID }}
       hostNetwork: {{ .Values.gremlin.hostNetwork }}
