@@ -21,9 +21,10 @@ tolerations: []
 
 affinity: {}
 
-extraMetadataLabels: {}
+extraCommonLabels: {}
 
 gremlin:
+
   # gremlin.apparmor -
   # Gremlin assumes apparmor is not enabled by default and so it will not specify any apparmor profile to use
   # You may need to provide a specific profile if your environment requires it.
@@ -94,6 +95,7 @@ gremlin:
     create: true
 
   podSecurity:
+
     # gremlin.podSecurity.allowPrivilegeEscalation -
     # Allows Gremlin containers privilege escalation powers
     allowPrivilegeEscalation: false
@@ -103,32 +105,32 @@ gremlin:
     #   Daemonset as well as any pod security resource that governs it. Capabilities that are required for specific
     #   attacks can be removed from this list if running such attacks are not desired.
     capabilities:
-      - KILL # Required to run Process Killer attacks
-      - NET_ADMIN # Required to run network attacks
-      - SYS_BOOT # Required to run Shutdown attacks
-      - SYS_TIME # Required to run Time Travel attacks
+      - KILL        # Required to run Process Killer attacks
+      - NET_ADMIN   # Required to run network attacks
+      - SYS_BOOT    # Required to run Shutdown attacks
+      - SYS_TIME    # Required to run Time Travel attacks
 
-      - SYS_ADMIN # Required by container drivers: docker-runc, crio-runc, containerd-runc
+      - SYS_ADMIN   # Required by container drivers: docker-runc, crio-runc, containerd-runc
+                    #   to run attacks against running containers
 
-        #   to run attacks against running containers
-      - SYS_PTRACE # Required by container drivers: docker-runc, crio-runc, containerd-runc
+      - SYS_PTRACE  # Required by container drivers: docker-runc, crio-runc, containerd-runc
+                    #   to determine if Gremlin is in the host's pid namespace
 
-        #   to determine if Gremlin is in the host's pid namespace
-      - SETFCAP # Required by container drivers: docker-runc, crio-runc, containerd-runc
+      - SETFCAP     # Required by container drivers: docker-runc, crio-runc, containerd-runc
+                    #   to set capabilities on Gremlin attack sidecars
 
-        #   to set capabilities on Gremlin attack sidecars
       - AUDIT_WRITE # Required by container drivers: docker-runc, crio-runc, containerd-runc
+                    #   to write to the Kernel's audit log
 
-        #   to write to the Kernel's audit log
-      - MKNOD # Required by container drivers: docker-runc, crio-runc, containerd-runc
+      - MKNOD       # Required by container drivers: docker-runc, crio-runc, containerd-runc
+                    #   to create new devices for Gremlin attack sidecars
 
-        #   to create new devices for Gremlin attack sidecars
-      - SYS_CHROOT # Required by container drivers: docker-runc, crio-runc, containerd-runc
+      - SYS_CHROOT  # Required by container drivers: docker-runc, crio-runc, containerd-runc
+                    #   to create and enter new namespaces for Gremlin attack sidecars
 
-        #   to create and enter new namespaces for Gremlin attack sidecars
-      - NET_RAW # Required by container drivers: docker-runc, crio-runc, containerd-runc
-        #   Not actively used by Gremlin but requested by sidecars
-        #   This capability will be removed in a later release
+      - NET_RAW     # Required by container drivers: docker-runc, crio-runc, containerd-runc
+                    #   Not actively used by Gremlin but requested by sidecars
+                    #   This capability will be removed in a later release
 
     # gremlin.podSecurity.readOnlyRootFilesystem -
     # Forces the Gremlin Daemonset containers to run with a read-only root filesystem
@@ -147,9 +149,9 @@ gremlin:
     # gremlin.podSecurity.volumes -
     # Specifies the volume types the Gremlin Daemonset is allowed to use
     volumes:
-      - configMap # Required when the Gremlin Daemonset installs a seccomp profile (see gremlin.podSecurity.seccomp)
-      - secret # Required to store and load secret information like certificates that authenticate Gremlin
-      - hostPath # Required by Gremlin to store attack logs (/var/log/gremlin) and attack state (/var/lib/gremlin)
+      - configMap   # Required when the Gremlin Daemonset installs a seccomp profile (see gremlin.podSecurity.seccomp)
+      - secret      # Required to store and load secret information like certificates that authenticate Gremlin
+      - hostPath    # Required by Gremlin to store attack logs (/var/log/gremlin) and attack state (/var/lib/gremlin)
 
     podSecurityPolicy:
       # gremlin.podSecurity.podSecurityPolicy.create -

@@ -32,6 +32,15 @@ Create chart name and version as used by the chart label.
 {{- end -}}
 
 {{/*
+Common labels
+*/}}
+{{- define "gremlin.commonLabels" -}}
+{{- if .Values.extraCommonLabels }}
+{{ toYaml .Values.extraCommonLabels }}
+{{- end }}
+{{- end -}}
+
+{{/*
 Because we've evolved the recommended way to pass the secret name over time, we hide the following order of operations behind this computed value:
 In later versions of this chart, we will remove the use of `.Values.gremlin.client.secretName` and the fallback value of `gremlin-team-cert`
 */}}
