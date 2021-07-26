@@ -25,6 +25,8 @@ chao:
 
 affinity: {}
 
+extraCommonLabels: {}
+
 gremlin:
 
   # gremlin.apparmor -

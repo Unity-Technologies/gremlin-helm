@@ -20,6 +20,7 @@ their default values. See values.yaml for all available options.
 | `chaoimage.pullPolicy`                 | Container pull policy for the `chao` container                 | `Always`                                                                    |
 | `chaoimage.repository`                 | Container image to use for the `chao` container                | `gremlin/chao`                                                              |
 | `chaoimage.tag`                        | Container image tag to deploy for the `chao` container         | `latest`                                                                    |
+| `extraCommonLabels`                    | An extra set of labels which are applied to chao, the daemonset, and their service accounts | `{}`                                           |
 | `daemonset.nodeSelector`                         | Map of node labels for Gremlin pod assignment                 | `{}`|
 | `chao.nodeSelector`                         | Map of node labels for chao deployment                 | `{}`|
 | `daemonset.tolerations`                          | List of node taints to tolerate for Gremlin pod assignment                                | `[]`                                                                        |
