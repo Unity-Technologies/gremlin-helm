@@ -25,6 +25,14 @@ spec:
         {{- include "gremlin.commonLabels" . | indent 8 }}
     spec:
       serviceAccountName: chao
+      {{- if .Values.chao.nodeSelector }}
+      nodeSelector:
+        {{- toYaml .Values.chao.nodeSelector | nindent 8}}
+      {{- end }}
+      {{- if .Values.chao.tolerations }}
+      tolerations: 
+        {{- toYaml .Values.chao.tolerations | nindent 8}}
+      {{- end }}
       containers:
         - image: {{ .Values.chaoimage.repository }}:{{ .Values.chaoimage.tag }}
         {{- if .Values.resources }}
